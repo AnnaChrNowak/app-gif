@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h2>GIF searching</h2>
+    <SearchForm />
+    <Results />
+    <Favourites />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchForm from './components/SearchForm.vue'
+import Results from './components/Results'
+import Favourites from "./components/Favourites";
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Favourites,
+    SearchForm,
+    Results
   }
 }
 </script>
@@ -21,8 +27,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
