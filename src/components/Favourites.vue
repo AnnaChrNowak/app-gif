@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-4">
+    <div class="container">
         <h3>Your favourites GIFs :</h3>
         <div class="row col results-content mx-auto">
             <FavouritesItem />

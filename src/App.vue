@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <h2>GIF searching</h2>
     <SearchForm />
     <Results />
