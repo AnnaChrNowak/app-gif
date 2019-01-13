@@ -13,15 +13,7 @@
 
     export default {
         name: 'Results',
-        components: { ResultItem
-        },
-        pops: {},
-        date: {},
-        data() {
-            return {
-
-            }
-        },
+        components: { ResultItem },
     }
 </script>
 
@@ -29,7 +21,6 @@
     .results-content {
         border: 2px dashed #252525;
         min-height: 300px;
-
     }
 
 </style>

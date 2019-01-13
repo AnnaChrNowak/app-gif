@@ -26,52 +26,52 @@
   import axios from 'axios'
   import Vue from 'vue'
 
-export default {
-  name: 'SearchForm',
-  data() {
-    return {
-      searched_phrase: '',
-      search_limit: 4
-    }
-
-  },
-  methods: {
-    searchGifs(searched_phrase, search_limit){
-      this.$store.state.serched_gifs = {};
-
-
-      axios.get("http://api.giphy.com/v1/gifs/search?q="+searched_phrase+"&api_key=EwQCHDTYU2onchg4pwYQmRFRcugz5ySa&limit="+search_limit+"")
-              .then(res => {
-                let gifs = res.data.data;
-
-                if(gifs.length === 0) {
-                  alert('There is no gifs you looking for, try again')
-                  this.searched_phrase = ''
-                } else {
-                  this.displayGifs(gifs);
-                }
-
-
-                })
-              .catch(err => console.log(err));
-    },
-
-    displayGifs(gifs) {
-      for(let i = 0; i< gifs.length; i++) {
-        let url = gifs[i].images.fixed_height.url;
-        let key = gifs[i].id;
-
-        Vue.set(this.$store.state.serched_gifs, key, {image: url})
+  export default {
+    name: 'SearchForm',
+    data() {
+      return {
+        searched_phrase: '',
+        search_limit: 4
       }
-    },
-  }
-}
 
+    },
+    methods: {
+      searchGifs(searched_phrase, search_limit){
+        //Reset object searched_gifs
+        this.$store.state.searched_gifs = {};
+
+        //Get response from the giph server
+        axios.get("http://api.giphy.com/v1/gifs/search?q=" + searched_phrase +
+                "&api_key=" + this.$store.state.API_KEY +
+                "&limit=" + search_limit)
+
+                .then(res => {
+                    let gifs = res.data.data;
+                    if(gifs.length === 0) {
+                      alert('There is no gifs you looking for, try again')
+                      this.searched_phrase = ''
+                    } else {
+                      this.displayGifs(gifs);
+                    }
+                  })
+                .catch(err => alert(err));
+      },
+
+      //Create object searched_gifs
+      displayGifs(gifs) {
+        for(let i = 0; i< gifs.length; i++) {
+          let url = gifs[i].images.fixed_height.url;
+          let key = gifs[i].id;
+          Vue.set(this.$store.state.searched_gifs, key, {image_url: url})
+        }
+      },
+    }
+  }
 </script>
 
 <style scoped>
-.limit-gifs {
-  max-width: 100px;
-  text-align: center;
-}
+  .limit-gifs {
+    max-width: 100px;
+    text-align: center;
+  }
 </style>

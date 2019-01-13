@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col py-4">
                 <div class="nav justify-content-center">
-                    <div class="result p-2" v-bind:key="gif.id" v-for="(gif, key) in serched_gifs">
-                        <img :src="gif.image" alt="" class="img-fluid gif">
+                    <div class="result p-2" v-bind:key="gif.id" v-for="(gif, key) in $store.state.searched_gifs">
+                        <img :src="gif.image_url" alt="" class="img-fluid gif">
                         <button class="add" @click="addFavouriteGif(gif, key)"><span class="favourite">+</span></button>
                     </div>
                 </div>
@@ -21,26 +21,22 @@
     export default {
         name: 'ResultItem',
         computed: {
-            serched_gifs() {
-                return this.$store.state.serched_gifs;
+            searched_gifs() {
+                return this.$store.state.searched_gifs;
             }
         },
-        created() {
-            this.$store.state.favourites_gifs = JSON.parse(localStorage.getItem(this.$store.state.store_key) || '{}')
-        },
 
+        //Loading from local storage favourite_gifs object
+        created() {
+            this.$store.state.favourites_gifs = JSON.parse(localStorage.getItem(this.$store.state.LOCAL_STORAGE_KEY) || '{}')
+        },
         methods: {
             addFavouriteGif(gif, key) {
-
+                //Adding favourite_gif to favourite_gi object
                 Vue.set(this.$store.state.favourites_gifs, key, gif)
 
-                localStorage.setItem(this.$store.state.store_key, JSON.stringify(this.$store.state.favourites_gifs))
-            }
-        },
-
-        data() {
-            return {
-
+                //Setting Local Storage
+                localStorage.setItem(this.$store.state.LOCAL_STORAGE_KEY, JSON.stringify(this.$store.state.favourites_gifs))
             }
         },
     }

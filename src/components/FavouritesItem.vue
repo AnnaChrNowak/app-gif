@@ -4,7 +4,7 @@
             <div class="col">
                 <div class="nav justify-content-center">
                     <div class="result p-2" :key="gif.id" v-for="(gif, key) in favourites_gifs">
-                        <img :src="gif.image" alt="" class="img-fluid gif">
+                        <img :src="gif.image_url" alt="" class="img-fluid gif">
                         <button class="add" @click="removeFavouriteGif(key)"><span class="favourite">-</span></button>
                     </div>
                 </div>
@@ -25,14 +25,12 @@
                 return this.$store.state.favourites_gifs;
             }
         },
-
         methods: {
             removeFavouriteGif(key) {
-
+                //Deleting element from favourites_gifs object
                 Vue.delete(this.$store.state.favourites_gifs, key);
-
-                localStorage.setItem(this.$store.state.store_key, JSON.stringify(this.$store.state.favourites_gifs));
-
+                //Refreshing Local Storage after deleting
+                localStorage.setItem(this.$store.state.LOCAL_STORAGE_KEY, JSON.stringify(this.$store.state.favourites_gifs));
             }
         }
     }

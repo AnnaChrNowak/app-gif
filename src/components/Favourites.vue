@@ -13,15 +13,7 @@
 
     export default {
         name: 'Favourites',
-        components: { FavouritesItem
-        },
-        pops: {},
-        date: {},
-        data() {
-            return {
-
-            }
-        },
+        components: { FavouritesItem },
     }
 </script>
 

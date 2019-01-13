@@ -6,11 +6,10 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	state: {
-	    serched_gifs: {},
-
+		searched_gifs: {},
 		favourites_gifs: {},
-
-        store_key: 'favourites-storage'
+		LOCAL_STORAGE_KEY: 'favourites-storage',
+		API_KEY: 'EwQCHDTYU2onchg4pwYQmRFRcugz5ySa',
 	}
 });
 
