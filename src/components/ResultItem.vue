@@ -25,17 +25,16 @@
                 return this.$store.state.searched_gifs;
             }
         },
-
-        //Loading from local storage favourite_gifs object
+        // Loading favourite_gifs from local storage
         created() {
             this.$store.state.favourites_gifs = JSON.parse(localStorage.getItem(this.$store.state.LOCAL_STORAGE_KEY) || '{}')
         },
         methods: {
             addFavouriteGif(gif, key) {
-                //Adding favourite_gif to favourite_gi object
+                // Adding favourite_gif to favourite_gifs and bind them
                 Vue.set(this.$store.state.favourites_gifs, key, gif)
 
-                //Setting Local Storage
+                // Setting Local Storage
                 localStorage.setItem(this.$store.state.LOCAL_STORAGE_KEY, JSON.stringify(this.$store.state.favourites_gifs))
             }
         },

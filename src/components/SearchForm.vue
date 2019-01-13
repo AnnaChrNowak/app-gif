@@ -37,10 +37,10 @@
     },
     methods: {
       searchGifs(searched_phrase, search_limit){
-        //Reset object searched_gifs
+        // Reset searched_gifs
         this.$store.state.searched_gifs = {};
 
-        //Get response from the giph server
+        // Get gifs from the giph server
         axios.get("http://api.giphy.com/v1/gifs/search?q=" + searched_phrase +
                 "&api_key=" + this.$store.state.API_KEY +
                 "&limit=" + search_limit)
@@ -57,7 +57,7 @@
                 .catch(err => alert(err));
       },
 
-      //Create object searched_gifs
+      // Populate searched_gifs
       displayGifs(gifs) {
         for(let i = 0; i< gifs.length; i++) {
           let url = gifs[i].images.fixed_height.url;

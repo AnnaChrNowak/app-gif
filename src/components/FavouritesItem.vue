@@ -27,9 +27,9 @@
         },
         methods: {
             removeFavouriteGif(key) {
-                //Deleting element from favourites_gifs object
+                // Deleting element from favourites_gifs
                 Vue.delete(this.$store.state.favourites_gifs, key);
-                //Refreshing Local Storage after deleting
+                // Refreshing Local Storage after deleting
                 localStorage.setItem(this.$store.state.LOCAL_STORAGE_KEY, JSON.stringify(this.$store.state.favourites_gifs));
             }
         }
